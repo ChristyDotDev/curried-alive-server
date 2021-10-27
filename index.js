@@ -18,6 +18,11 @@ io.on('connection', (socket) => {
     socket.join(gameId);
     io.to(gameId).emit("joinedGame", gameId)
   });
+  socket.on('drawing', data => {
+    console.log('drawing: ', data);
+    io.to(data.room).emit("drawing", data)
+  });
+  
 });
 
 http.listen(port, () => {
